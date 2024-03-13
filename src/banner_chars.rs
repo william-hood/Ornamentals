@@ -1,6 +1,6 @@
 
 pub const BANNERIZED_A: [[&str; 6]; 2] = [
-    ["  ___  ", " \\u{2571} _ \u{2572} ", "\u{2502} \u{2502}_\u{2502} \u{2502}",
+    ["  ___  ", " \u{2571} _ \u{2572} ", "\u{2502} \u{2502}_\u{2502} \u{2502}",
     "\u{2502}  _  \u{2502}", "\u{2502} \u{2502} \u{2502} \u{2502}",
     "\u{2502}_\u{2502} \u{2502}_\u{2502}"],
     ["  ___  ", " / _ \\ ", "| |_| |", "|  _  |", "| | | |", "|_| |_|"]
@@ -478,11 +478,101 @@ pub const BANNERIZED_QUESTION_MARK: [[&str; 6]; 2] = [
     ["  __  ", " /  \\ ", "|_/\\ |", "   / /", "  |_| ", "  |_| "],
 ];
 
+pub fn get_banner(message: &str, mode: usize) -> String {
+    let mut banner_line: [String; 6] = [ String::new(), String::new(), String::new(), String::new(), String::new(), String::new() ];
 
+    // First convert the message to upper case
+    let msg = message.to_string().to_uppercase();
 
-/*
-pub const XXXXXXXXXXXXXXXXXXX: [[&str; 6]; 2] = [
-    [],
-    [],
-];
-*/
+    // Strip out non-characters and construct the 6 banner lines
+    for this_char in msg.chars() {
+        let this_banner_char: [&str; 6];
+
+        match this_char {
+            'A' => { this_banner_char = BANNERIZED_A[mode] }
+            'B' => { this_banner_char = BANNERIZED_B[mode] }
+            'C' => { this_banner_char = BANNERIZED_C[mode] }
+            'D' => { this_banner_char = BANNERIZED_D[mode] }
+            'E' => { this_banner_char = BANNERIZED_E[mode] }
+            'F' => { this_banner_char = BANNERIZED_F[mode] }
+            'G' => { this_banner_char = BANNERIZED_G[mode] }
+            'H' => { this_banner_char = BANNERIZED_H[mode] }
+            'I' => { this_banner_char = BANNERIZED_I[mode] }
+            'J' => { this_banner_char = BANNERIZED_J[mode] }
+            'K' => { this_banner_char = BANNERIZED_K[mode] }
+            'L' => { this_banner_char = BANNERIZED_L[mode] }
+            'M' => { this_banner_char = BANNERIZED_M[mode] }
+            'N' => { this_banner_char = BANNERIZED_N[mode] }
+            'O' => { this_banner_char = BANNERIZED_O[mode] }
+            'P' => { this_banner_char = BANNERIZED_P[mode] }
+            'Q' => { this_banner_char = BANNERIZED_Q[mode] }
+            'R' => { this_banner_char = BANNERIZED_R[mode] }
+            'S' => { this_banner_char = BANNERIZED_S[mode] }
+            'T' => { this_banner_char = BANNERIZED_T[mode] }
+            'U' => { this_banner_char = BANNERIZED_U[mode] }
+            'V' => { this_banner_char = BANNERIZED_V[mode] }
+            'W' => { this_banner_char = BANNERIZED_W[mode] }
+            'X' => { this_banner_char = BANNERIZED_X[mode] }
+            'Y' => { this_banner_char = BANNERIZED_Y[mode] }
+            'Z' => { this_banner_char = BANNERIZED_Z[mode] }
+            '1' => { this_banner_char = BANNERIZED_ONE[mode] }
+            '2' => { this_banner_char = BANNERIZED_TWO[mode] }
+            '3' => { this_banner_char = BANNERIZED_THREE[mode] }
+            '4' => { this_banner_char = BANNERIZED_FOUR[mode] }
+            '5' => { this_banner_char = BANNERIZED_FIVE[mode] }
+            '6' => { this_banner_char = BANNERIZED_SIX[mode] }
+            '7' => { this_banner_char = BANNERIZED_SEVEN[mode] }
+            '8' => { this_banner_char = BANNERIZED_EIGHT[mode] }
+            '9' => { this_banner_char = BANNERIZED_NINE[mode] }
+            '0' => { this_banner_char = BANNERIZED_ZERO[mode] }
+            '!' => { this_banner_char = BANNERIZED_EXCLAMATION_POINT[mode] }
+            '@' => { this_banner_char = BANNERIZED_AT[mode] }
+            '#' => { this_banner_char = BANNERIZED_NUMBER_SIGN[mode] }
+            '$' => { this_banner_char = BANNERIZED_DOLLAR_SIGN[mode] }
+            '%' => { this_banner_char = BANNERIZED_PERCENT[mode] }
+            '^' => { this_banner_char = BANNERIZED_CARRAT[mode] }
+            '&' => { this_banner_char = BANNERIZED_AMPERSAND[mode] }
+            '*' => { this_banner_char = BANNERIZED_ASTERISK[mode] }
+            '(' => { this_banner_char = BANNERIZED_OPEN_PARENTHESIS[mode] }
+            ')' => { this_banner_char = BANNERIZED_CLOSE_PARENTHESIS[mode] }
+            '~' => { this_banner_char = BANNERIZED_TILDE[mode] }
+            '`' => { this_banner_char = BANNERIZED_BACKTICK[mode] }
+            '_' => { this_banner_char = BANNERIZED_UNDERSCORE[mode] }
+            '-' => { this_banner_char = BANNERIZED_MINUS[mode] }
+            '+' => { this_banner_char = BANNERIZED_PLUS[mode] }
+            '=' => { this_banner_char = BANNERIZED_EQUALS[mode] }
+            '}' => { this_banner_char = BANNERIZED_CLOSE_BRACE[mode] }
+            '{' => { this_banner_char = BANNERIZED_OPEN_BRACE[mode] }
+            ']' => { this_banner_char = BANNERIZED_CLOSE_BRACKET[mode] }
+            '[' => { this_banner_char = BANNERIZED_OPEN_BRACKET[mode] }
+            '|' => { this_banner_char = BANNERIZED_PIPE[mode] }
+            '\\' => { this_banner_char = BANNERIZED_BACKSLASH[mode] }
+            ':' => { this_banner_char = BANNERIZED_COLON[mode] }
+            ';' => { this_banner_char = BANNERIZED_SEMICOLON[mode] }
+            '"' => { this_banner_char = BANNERIZED_QUOTES[mode] }
+            '\'' => { this_banner_char = BANNERIZED_APOSTROPHE[mode] }
+            '>' => { this_banner_char = BANNERIZED_GREATER_THAN[mode] }
+            '<' => { this_banner_char = BANNERIZED_LESS_THAN[mode] }
+            ',' => { this_banner_char = BANNERIZED_COMMA[mode] }
+            '.' => { this_banner_char = BANNERIZED_PERIOD[mode] }
+            '/' => { this_banner_char = BANNERIZED_FORWARD_SLASH[mode] }
+            '?' => { this_banner_char = BANNERIZED_QUESTION_MARK[mode] }
+            _=> { this_banner_char = BANNERIZED_SPACE[mode] }
+        }
+
+        for position in 0..banner_line.len() {
+            banner_line[position] += this_banner_char[position];
+        }
+    }
+
+    let mut result = String::new();
+
+    for position in 0..banner_line.len() {
+        if position < banner_line.len() {
+            result = format!("{} {}", result, banner_line[position]);
+            result += "\r\n";
+        }
+    }
+
+    return result;
+}
