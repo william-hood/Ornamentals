@@ -1,3 +1,4 @@
+use crate::global::*;
 
 pub const BANNERIZED_A: [[&str; 6]; 2] = [
     ["  ___  ", " \u{2571} _ \u{2572} ", "\u{2502} \u{2502}_\u{2502} \u{2502}",
@@ -478,7 +479,7 @@ pub const BANNERIZED_QUESTION_MARK: [[&str; 6]; 2] = [
     ["  __  ", " /  \\ ", "|_/\\ |", "   / /", "  |_| ", "  |_| "],
 ];
 
-pub fn get_banner(message: &str, mode: usize) -> String {
+pub fn get_banner(message: &str, mode: FxMode) -> String {
     let mut banner_line: [String; 6] = [ String::new(), String::new(), String::new(), String::new(), String::new(), String::new() ];
 
     // First convert the message to upper case
